@@ -1,0 +1,32 @@
+{
+  "name": "poll",
+  "description": "A simple poll function based on async, await, and an infinite loop",
+  "version": "0.1.0",
+  "repository": "kleinfreund/poll",
+  "author": {
+    "name": "Philipp Rudloff",
+    "url": "https://kleinfreund.de"
+  },
+  "license": "MIT",
+  "main": "src/poll",
+  "sideEffects": false,
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm test",
+    "test": "jest --collect-coverage"
+  },
+  "keywords": [
+    "poll",
+    "async",
+    "await"
+  ],
+  "bugs": {
+    "url": "https://github.com/kleinfreund/poll/issues"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.16",
+    "jest": "^24.8.0"
+  }
+}

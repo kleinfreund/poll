@@ -2,6 +2,11 @@
 
 A simple poll function based on async, await, and an infinite loop.
 
+Links:
+
+- [**npmjs.com**/package/poll](https://www.npmjs.com/package/poll)
+- [**github.com**/kleinfreund/poll](https://github.com/kleinfreund/poll)
+
 
 
 ## Table of contents

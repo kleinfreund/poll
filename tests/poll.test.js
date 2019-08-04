@@ -94,7 +94,7 @@ describe('poll', () => {
     await expect(pollRef).rejects.toThrow(RangeError)
   });
 
-  test('… needs to be called with a non-negative number', async () => {
+  test('… throws error when polled function throws error', async () => {
     function fn() {
       throw new Error('I’m not happy with the overall situation.');
     };

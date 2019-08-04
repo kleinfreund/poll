@@ -2,12 +2,12 @@
  * Calls a given function and keeps calling it after the specified delay has passed.
  *
  * @param {() => any} fn The function to call.
- * @param {Number} delay The delay (in milliseconds) to wait before calling the function again.
+ * @param {number} delay The delay (in milliseconds) to wait before calling the function again.
  * @param {() => Boolean} shouldStopPolling A callback function indicating whether to stop polling.
  */
 async function poll(
   fn: () => any,
-  delay: Number,
+  delay: number,
   shouldStopPolling: () => Boolean = () => false
 ) {
   if (typeof delay !== 'number') {

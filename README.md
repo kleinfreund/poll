@@ -110,7 +110,7 @@ poll(function, delay[, shouldStopPolling])
 **Parameters**:
 
 - **function**: Required. A function to be called every `delay` milliseconds. No parameters are passed to `function` upon calling it.
-- **delay**: Required. The delay (in milliseconds) to wait before calling the function again.
+- **delay**: Required. The delay (in milliseconds) to wait before calling the function again. If `delay` is negative, zero will be used instead.
 - **shouldStopPolling**: Optional. A function indicating whether to stop the polling process. The callback function is evaluated twice during one iteration of the internal loop:
   - After the result of the call to `function` was successfully awaited. In other words, right before triggering a new delay period.
   - After the `delay` has passed. In other words, right before calling `function` again.

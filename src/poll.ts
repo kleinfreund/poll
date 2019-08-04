@@ -3,12 +3,12 @@
  *
  * @param {() => any} fn The function to call.
  * @param {number} delay The delay (in milliseconds) to wait before calling the function again.
- * @param {() => Boolean} shouldStopPolling A callback function indicating whether to stop polling.
+ * @param {() => boolean} shouldStopPolling A callback function indicating whether to stop polling.
  */
 async function poll(
   fn: () => any,
   delay: number,
-  shouldStopPolling: () => Boolean = () => false
+  shouldStopPolling: () => boolean = () => false
 ) {
   if (typeof delay !== 'number') {
     throw new TypeError(

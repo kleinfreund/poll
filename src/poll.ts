@@ -14,11 +14,9 @@ async function poll(
     throw new TypeError(
       `Expected “delay” to be of type number, but it was of type ${typeof delay}.`
     );
-  } else if (delay < 0) {
-    throw new RangeError(
-      `Expected “delay” to be a non-negative number, but it was “${delay}”.`
-    );
   }
+
+  delay = Math.max(0, delay);
 
   try {
     do {

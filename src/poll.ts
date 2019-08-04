@@ -5,7 +5,11 @@
  * @param {Number} delay The delay (in milliseconds) to wait before calling the function again.
  * @param {() => Boolean} shouldStopPolling A callback function indicating whether to stop polling.
  */
-async function poll(fn, delay, shouldStopPolling = () => false) {
+async function poll(
+  fn: () => any,
+  delay: Number,
+  shouldStopPolling: () => Boolean = () => false
+) {
   if (typeof delay !== 'number') {
     throw new TypeError(
       `Expected “delay” to be of type number, but it was of type ${typeof delay}.`
@@ -31,4 +35,4 @@ async function poll(fn, delay, shouldStopPolling = () => false) {
   }
 }
 
-module.exports = poll;
+export default poll;

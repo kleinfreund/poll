@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "target": "esnext",
+    "moduleResolution": "node"
+  },
+  "include": [
+    "src"
+  ]
+}

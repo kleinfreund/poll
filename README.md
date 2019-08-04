@@ -20,16 +20,18 @@ Links:
 
 ## Installation
 
-Install the NPM package as a dependency …
+### Browser
+
+Download the ES module file …
 
 ```sh
-npm install --save poll
+curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/esm/poll.mjs
 ```
 
 … and import it like this:
 
-```node
-const poll = require('poll');
+```js
+import poll from 'poll.mjs';
 
 function fn() {
   console.log('Hello, beautiful!');
@@ -37,6 +39,52 @@ function fn() {
 
 poll(fn, 1000);
 ```
+
+### Node
+
+Install the node package as a dependency …
+
+```sh
+npm install --save poll
+```
+
+… and import it like this:
+
+- CommonJS module
+
+  ```node
+  const poll = require('poll').default;
+
+  function fn() {
+    console.log('Hello, beautiful!');
+  };
+
+  poll(fn, 1000);
+  ```
+
+- ES module
+
+  ```js
+  import poll from 'poll/dist/esm/poll.mjs';
+
+    function fn() {
+    console.log('Hello, beautiful!');
+  };
+
+  poll(fn, 1000);
+  ```
+
+- TypeScript module
+
+  ```ts
+  import poll from 'poll/src/poll';
+
+  function fn() {
+    console.log('Hello, beautiful!');
+  };
+
+  poll(fn, 1000);
+  ```
 
 
 

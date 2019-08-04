@@ -1,4 +1,4 @@
-const poll = require('../src/poll');
+const poll = require('../dist/cjs/poll').default;
 
 describe('poll', () => {
   beforeEach(() => {

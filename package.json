@@ -1,32 +1,43 @@
 {
   "name": "poll",
-  "description": "A simple poll function based on async, await, and an infinite loop",
   "version": "0.1.0",
-  "repository": "kleinfreund/poll",
-  "author": {
-    "name": "Philipp Rudloff",
-    "url": "https://kleinfreund.de"
-  },
   "license": "MIT",
-  "main": "src/poll",
-  "sideEffects": false,
-  "files": [
-    "src"
-  ],
-  "scripts": {
-    "prepublishOnly": "npm test",
-    "test": "jest --collect-coverage"
-  },
+  "description": "A simple poll function based on async, await, and an infinite loop",
   "keywords": [
     "poll",
     "async",
     "await"
   ],
+  "repository": "kleinfreund/poll",
   "bugs": {
     "url": "https://github.com/kleinfreund/poll/issues"
   },
+  "author": {
+    "name": "Philipp Rudloff",
+    "url": "https://kleinfreund.de"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "dist/cjs/poll",
+  "module": "dist/esm/poll.mjs",
+  "sideEffects": false,
+  "files": [
+    "cjs",
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "npm test",
+    "prepack": "npm run build",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc --module esnext --outDir dist/esm && npm run rename-to-mjs",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "test": "jest --collect-coverage",
+    "rename-to-mjs": "mv dist/esm/poll.js dist/esm/poll.mjs"
+  },
   "devDependencies": {
     "@types/jest": "^24.0.16",
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "typescript": "^3.5.3"
   }
 }

@@ -18,19 +18,15 @@ async function poll(
 
   delay = Math.max(0, delay);
 
-  try {
-    do {
-      await fn();
+  do {
+    await fn();
 
-      if (shouldStopPolling()) {
-        break;
-      }
+    if (shouldStopPolling()) {
+      break;
+    }
 
-      await new Promise(resolve => setTimeout(resolve, delay));
-    } while (!shouldStopPolling());
-  } catch (error) {
-    throw error;
-  }
+    await new Promise(resolve => setTimeout(resolve, delay));
+  } while (!shouldStopPolling());
 }
 
 export default poll;

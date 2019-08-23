@@ -10,17 +10,12 @@ async function poll(fn, delay, shouldStopPolling = () => false) {
         throw new TypeError(`Expected “delay” to be of type number, but it was of type ${typeof delay}.`);
     }
     delay = Math.max(0, delay);
-    try {
-        do {
-            await fn();
-            if (shouldStopPolling()) {
-                break;
-            }
-            await new Promise(resolve => setTimeout(resolve, delay));
-        } while (!shouldStopPolling());
-    }
-    catch (error) {
-        throw error;
-    }
+    do {
+        await fn();
+        if (shouldStopPolling()) {
+            break;
+        }
+        await new Promise(resolve => setTimeout(resolve, delay));
+    } while (!shouldStopPolling());
 }
 export default poll;

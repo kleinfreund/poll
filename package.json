@@ -36,8 +36,8 @@
     "rename-to-mjs": "mv dist/esm/poll.js dist/esm/poll.mjs"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.1",
-    "jest": "^25.3.0",
-    "typescript": "^3.8.3"
+    "@types/jest": "^26.0.3",
+    "jest": "^26.1.0",
+    "typescript": "^3.9.6"
   }
 }

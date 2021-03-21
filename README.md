@@ -5,6 +5,7 @@ A simple poll function based on async, await, and an infinite loop.
 Links:
 
 - [**npmjs.com**/package/poll](https://www.npmjs.com/package/poll)
+  - [on BundlePhobia](https://bundlephobia.com/result?p=poll)
 - [**github.com**/kleinfreund/poll](https://github.com/kleinfreund/poll)
 
 
@@ -25,65 +26,53 @@ Links:
 Download the ES module file …
 
 ```sh
-curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/esm/poll.mjs
+curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/poll.js
 ```
 
 … and import it like this:
 
 ```js
-import poll from 'poll.mjs';
+import poll from 'poll.js'
 
 function fn() {
-  console.log('Hello, beautiful!');
-};
+  console.log('Hello, beautiful!')
+}
 
-poll(fn, 1000);
+poll(fn, 1000)
 ```
 
 ### Node
 
-Install the node package as a dependency …
+Install the npm package as a dependency …
 
 ```sh
-npm install --save poll
+npm install poll
 ```
 
 … and import it like this:
 
 - CommonJS module
 
-  ```node
-  const poll = require('poll').default;
+  ```js
+  const poll = require('poll').default
 
   function fn() {
-    console.log('Hello, beautiful!');
-  };
+    console.log('Hello, beautiful!')
+  }
 
-  poll(fn, 1000);
+  poll(fn, 1000)
   ```
 
 - ES module
 
   ```js
-  import poll from 'poll/dist/esm/poll.mjs';
+  import poll from 'poll/dist/poll.js'
 
   function fn() {
-    console.log('Hello, beautiful!');
-  };
+    console.log('Hello, beautiful!')
+  }
 
-  poll(fn, 1000);
-  ```
-
-- TypeScript module
-
-  ```ts
-  import poll from 'poll/src/poll';
-
-  function fn() {
-    console.log('Hello, beautiful!');
-  };
-
-  poll(fn, 1000);
+  poll(fn, 1000)
   ```
 
 
@@ -130,14 +119,14 @@ None.
 The `poll` function expects two parameters: A callback function and a delay. After calling `poll` with these parameters, the callback function will be called. After it’s done being executed, the `poll` function will wait for the specified `delay`. After the delay, the process starts from the beginning.
 
 ```js
-const pollDelayInMinutes = 10;
+const pollDelayInMinutes = 10
 
 async function getStatusUpdates() {
-  const response = await fetch('/status');
-  console.log(response);
+  const response = await fetch('/status')
+  console.log(response)
 }
 
-poll(getStatusUpdates, pollDelayInMinutes * 60 * 1000);
+poll(getStatusUpdates, pollDelayInMinutes * 60 * 1000)
 ```
 
 Note that `poll` will not cause a second call to the callback function if the first call is still not finished. For example, it the endpoint `/status` does not respond and the server doesn’t time out the connection, `poll` will still be waiting for the callback function to fully resolve. It will not start the delay until the callback function is finished.
@@ -149,17 +138,16 @@ You can pass a callback function to `poll` for its last parameter. Its evaluated
 In the following example, the `shouldStopPolling` callback function evaluates to `true` after the `setTimeout` function called its anonymous callback function which sets `stopPolling` to `true`. The next time `shouldStopPolling` is evaluated, it will cause `poll` to exit normally.
 
 ```js
-const pollDelayInMinutes = 10;
-const stopPolling = false;
-const shouldStopPolling = () => stopPolling;
+let stopPolling = false
+const shouldStopPolling = () => stopPolling
 
 function fn() {
-  console.log('Hello, beautiful!');
+  console.log('Hello, beautiful!')
 }
 
 setTimeout(() => {
-  stopPolling = true;
-}, 1000);
+  stopPolling = true
+}, 1000)
 
-poll(fn, 50, shouldStopPolling);
+poll(fn, 50, shouldStopPolling)
 ```

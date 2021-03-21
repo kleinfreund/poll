@@ -11,7 +11,7 @@ describe('poll', () => {
   });
 
   test('… works with asynchronous function', async () => {
-    const fn = jest.fn().mockImplementation(async () => {});
+    const fn = jest.fn().mockImplementation(async () => { });
     poll(fn, 50);
 
     expect(fn).toHaveBeenCalledTimes(1);
@@ -79,8 +79,9 @@ describe('poll', () => {
   });
 
   test('… needs to be called with a number', async () => {
-    function fn() {};
+    function fn() { };
 
+    // @ts-ignore
     const pollRef = poll(fn, 'hello');
 
     await expect(pollRef).rejects.toThrow(TypeError)

@@ -32,7 +32,7 @@ curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/poll.js
 … and import it like this:
 
 ```js
-import poll from 'poll.js'
+import poll from './poll.js'
 
 function fn() {
   console.log('Hello, beautiful!')

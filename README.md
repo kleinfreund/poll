@@ -23,16 +23,16 @@ Links:
 
 ### Browser
 
-Download the ES module file …
+Download the UMD bundle file …
 
 ```sh
 curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/poll.js
 ```
 
-… and import it like this:
+… and use it like this:
 
 ```js
-import poll from './poll.js'
+const poll = window.poll.default
 
 function fn() {
   console.log('Hello, beautiful!')

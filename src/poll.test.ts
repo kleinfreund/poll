@@ -88,15 +88,6 @@ describe('poll', () => {
     expect(setTimeout).toHaveBeenCalledTimes(numberOfIterations)
   })
 
-  test('… needs to be called with a number', async () => {
-    function fn() { }
-
-    // @ts-ignore
-    const pollRef = poll(fn, 'hello')
-
-    await expect(pollRef).rejects.toThrow(TypeError)
-  })
-
   test('… throws error when polled function throws error', async () => {
     function fn() {
       throw new Error('I’m not happy with the overall situation.')

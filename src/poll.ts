@@ -10,12 +10,6 @@ export default async function poll(
   delay: number,
   shouldStopPolling: () => boolean = () => false
 ) {
-  if (typeof delay !== 'number') {
-    throw new TypeError(
-      `Expected “delay” to be of type number, but it was of type ${typeof delay}.`
-    )
-  }
-
   delay = Math.max(0, delay)
 
   do {

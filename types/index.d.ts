@@ -5,20 +5,8 @@
  * @param delay The delay (in milliseconds) to wait before calling the function again.
  * @param shouldStopPolling A callback function indicating whether to stop polling.
  */
-export default async function poll(
+export declare function poll(
   fn: () => any,
   delay: number,
-  shouldStopPolling: () => boolean = () => false
-): Promise<void> {
-  delay = Math.max(0, delay)
-
-  do {
-    await fn()
-
-    if (shouldStopPolling()) {
-      break
-    }
-
-    await new Promise(resolve => setTimeout(resolve, delay))
-  } while (!shouldStopPolling())
-}
+  shouldStopPolling: () => boolean
+): Promise<void>

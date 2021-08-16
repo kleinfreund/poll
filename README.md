@@ -10,12 +10,12 @@ Links:
 
 
 
-## Table of contents
+## Contents
 
 - [Installation](#installation)
-- [Tests](#tests)
 - [Documentation](#documentation)
 - [Examples](#examples)
+- [Versioning](#versioning)
 
 
 
@@ -75,19 +75,6 @@ npm install poll
   poll(fn, 1000)
   ```
 
-
-
-## Tests
-
-In order to run the tests, clone the repository and run the following commands:
-
-```sh
-npm install
-npm test
-```
-
-
-
 ## Documentation
 
 ### Syntax
@@ -98,21 +85,19 @@ poll(function, delay[, shouldStopPolling])
 
 **Parameters**:
 
-- **function**: Required. A function to be called every `delay` milliseconds. No parameters are passed to `function` upon calling it.
+- **fn**: Required. A function to be called every `delay` milliseconds. No parameters are passed to `fn` upon calling it.
 - **delay**: Required. The delay (in milliseconds) to wait before calling the function again. If `delay` is negative, zero will be used instead.
 - **shouldStopPolling**: Optional. A function indicating whether to stop the polling process. The callback function is evaluated twice during one iteration of the internal loop:
-  - After the result of the call to `function` was successfully awaited. In other words, right before triggering a new delay period.
-  - After the `delay` has passed. In other words, right before calling `function` again.
+  - After the result of the call to `fn` was successfully awaited. In other words, right before triggering a new delay period.
+  - After the `delay` has passed. In other words, right before calling `fn` again.
 
   This guarantees two things:
-  - A currently active execution of `function` will be completed.
-  - No new calls to `function` will be triggered.
+  - A currently active execution of `fn` will be completed.
+  - No new calls to `fn` will be triggered.
 
 **Return value**:
 
 None.
-
-
 
 ## Examples
 
@@ -122,7 +107,7 @@ The `poll` function expects two parameters: A callback function and a delay. Aft
 const pollDelayInMinutes = 10
 
 async function getStatusUpdates() {
-  const response = await fetch('/status')
+  const response = await fetch('/api/status')
   console.log(response)
 }
 
@@ -151,3 +136,7 @@ setTimeout(() => {
 
 poll(fn, 50, shouldStopPolling)
 ```
+
+## Versioning
+
+This package uses [semantic versioning](https://semver.org).

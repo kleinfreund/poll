@@ -8,72 +8,58 @@ Links:
   - [on BundlePhobia](https://bundlephobia.com/result?p=poll)
 - [**github.com**/kleinfreund/poll](https://github.com/kleinfreund/poll)
 
-
-
 ## Contents
 
-- [Installation](#installation)
+- [Installation & usage](#installation--usage)
 - [Documentation](#documentation)
 - [Examples](#examples)
 - [Versioning](#versioning)
+- [Update package version](#update-package-version)
 
+## Installation & usage
 
+### npm package
 
-## Installation
+1. Install the `poll` package.
 
-### Browser
+   ```sh
+   npm install poll
+   ```
 
-Download the UMD bundle file …
+2. Import the `poll` function and use it.
 
-```sh
-curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/poll.js
-```
+   ```js
+   // “poll” is mapped to “poll/dist/poll.js” by Node.js via the package’s “exports” field.
+   import { poll } from 'poll'
 
-… and use it like this:
+   function fn() {
+     console.log('Hello, beautiful!')
+   }
 
-```js
-const poll = window.poll.default
+   poll(fn, 1000)
+   ```
 
-function fn() {
-  console.log('Hello, beautiful!')
-}
+### Plain file
 
-poll(fn, 1000)
-```
+1. Download the `poll` module.
 
-### Node
+   ```sh
+   curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/poll.js
+   ```
 
-Install the npm package as a dependency …
+2. Import the `poll` function and use it.
 
-```sh
-npm install poll
-```
+   ```html
+   <script type="module">
+     import { poll } from './poll.js'
 
-… and import it like this:
+     function fn() {
+       console.log('Hello, beautiful!')
+     }
 
-- CommonJS module
-
-  ```js
-  const poll = require('poll').default
-
-  function fn() {
-    console.log('Hello, beautiful!')
-  }
-
-  poll(fn, 1000)
-  ```
-
-- ES module
-
-  ```js
-  import poll from 'poll/dist/poll.js'
-
-  function fn() {
-    console.log('Hello, beautiful!')
-  }
-
-  poll(fn, 1000)
-  ```
+     poll(fn, 1000)
+   </script>
+   ```
 
 ## Documentation
 
@@ -140,3 +126,43 @@ poll(fn, 50, shouldStopPolling)
 ## Versioning
 
 This package uses [semantic versioning](https://semver.org).
+
+## Update package version
+
+1. Make some changes and run the tests and the build script.
+
+   ```sh
+   npm test
+   npm run build
+   ```
+
+2. Commit the changes.
+3. Verify that you’re authenticated with npm.
+
+   ```sh
+   npm whomai
+   ```
+
+   If you’re not authenticated, do so using `npm login`.
+
+4. Change the package’s version locally.
+
+   ```sh
+   # See `npm version --help` for more options
+   npm version minor
+   ```
+
+   This changes the version number in the package.json file and adds a new git tag matching the new version.
+
+5. Push your changes and the updated git tags separately.
+
+   ```sh
+   git push
+   git push --tags
+   ```
+
+6. Publish the package.
+
+   ```sh
+   npm publish
+   ```

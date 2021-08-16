@@ -5,7 +5,7 @@
  * @param delay The delay (in milliseconds) to wait before calling the function again.
  * @param shouldStopPolling A callback function indicating whether to stop polling.
  */
-export default async function poll(
+export async function poll(
   fn: () => any,
   delay: number,
   shouldStopPolling: () => boolean = () => false

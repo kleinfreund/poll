@@ -20,6 +20,7 @@
     "async",
     "await"
   ],
+  "type": "module",
   "exports": "./dist/poll.js",
   "main": "./dist/poll.js",
   "module": "./dist/poll.js",

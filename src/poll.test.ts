@@ -11,6 +11,7 @@ describe('poll', () => {
   })
 
   test('… works with asynchronous function', async () => {
+    jest.spyOn(window, 'setTimeout')
     let pollingShouldBeStopped = false
     const shouldStopPolling = () => pollingShouldBeStopped
 
@@ -34,6 +35,7 @@ describe('poll', () => {
   })
 
   test('… works with synchronous function', async () => {
+    jest.spyOn(window, 'setTimeout')
     let pollingShouldBeStopped = false
     const shouldStopPolling = () => pollingShouldBeStopped
 
@@ -57,6 +59,7 @@ describe('poll', () => {
   })
 
   test('… can be stopped', async () => {
+    jest.spyOn(window, 'setTimeout')
     let pollingShouldBeStopped = false
     const shouldStopPolling = () => pollingShouldBeStopped
 

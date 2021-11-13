@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.1.0](https://github.com/kleinfreund/poll/compare/v3.0.0...v3.1.0) (2021-11-13)
+
+### Features
+
+- Adds support for asynchronous `shouldStopPolling` functions.
+
 ## [3.0.0](https://github.com/kleinfreund/poll/compare/v2.0.1...v3.0.0) (2021-08-16)
 
 ### Breaking changes

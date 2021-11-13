@@ -8,17 +8,17 @@
 export async function poll(
   fn: () => any,
   delay: number,
-  shouldStopPolling: () => boolean = () => false
+  shouldStopPolling: () => boolean | Promise<boolean> = () => false
 ): Promise<void> {
   delay = Math.max(0, delay)
 
   do {
     await fn()
 
-    if (shouldStopPolling()) {
+    if (await shouldStopPolling()) {
       break
     }
 
     await new Promise(resolve => setTimeout(resolve, delay))
-  } while (!shouldStopPolling())
+  } while (!await shouldStopPolling())
 }

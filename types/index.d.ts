@@ -8,5 +8,5 @@
 export declare function poll(
   fn: () => any,
   delay: number,
-  shouldStopPolling: () => boolean
+  shouldStopPolling: () => boolean | Promise<boolean>
 ): Promise<void>

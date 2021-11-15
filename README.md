@@ -71,13 +71,25 @@ poll(function, delay[, shouldStopPolling])
 
 **Parameters**:
 
-- **fn**: Required. A function to be called every `delay` milliseconds. No parameters are passed to `fn` upon calling it.
-- **delay**: Required. The delay (in milliseconds) to wait before calling the function again. If `delay` is negative, zero will be used instead.
-- **shouldStopPolling**: Optional. A function indicating whether to stop the polling process. The callback function is evaluated twice during one iteration of the internal loop:
-  - After the result of the call to `fn` was successfully awaited. In other words, right before triggering a new delay period.
-  - After the `delay` has passed. In other words, right before calling `fn` again.
+- **Name**: `fn`<br>
+  **Type**: `() => any`<br>
+  **Required**: Yes<br>
+  **Description**: A function to be called every `delay` milliseconds. No parameters are passed to `fn` upon calling it.
+- **Name**: `delay`<br>
+  **Type**: `number`<br>
+  **Required**: Yes<br>
+  **Description**: The delay (in milliseconds) to wait before calling the function again. If `delay` is negative, zero will be used instead.
+- **Name**: `shouldStopPolling`<br>
+  **Type**: `() => boolean | Promise<boolean>`<br>
+  **Required**: No<br>
+  **Default**: `() => false`<br>
+  **Description**: A function (or a promise resolving to a function) indicating whether to stop the polling process by returning a truthy value (e.g. `true`). The `shouldStopPolling` callback function is evaluated twice during one polling cycle:
+
+  - After the result of the call to `fn` was successfully awaited (right before triggering a new delay period).
+  - After the `delay` has passed (right before calling `fn` again).
 
   This guarantees two things:
+
   - A currently active execution of `fn` will be completed.
   - No new calls to `fn` will be triggered.
 

@@ -1,1 +1,1 @@
-async function a(a,i,t=(()=>!1)){i=Math.max(0,i);do{if(await a(),await t())break;await new Promise((a=>setTimeout(a,i)))}while(!await t())}export{a as poll};
+async function a(a,t,e=(()=>!1)){do{if(await a(),await e())break;const i="number"==typeof t?t:t();await new Promise((a=>setTimeout(a,Math.max(0,i))))}while(!await e())}export{a as poll};

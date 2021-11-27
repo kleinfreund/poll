@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.0](https://github.com/kleinfreund/poll/compare/v3.1.0...v3.2.0) (2021-11-27)
+
+### Features
+
+- Adds support for providing a delay function which returns the delay value allowing customization of the polling interval. This can be utilized to implement polling with exponential backoff (i.e. where the polling interval steadily increases over time).
+
 ## [3.1.0](https://github.com/kleinfreund/poll/compare/v3.0.0...v3.1.0) (2021-11-13)
 
 ### Features

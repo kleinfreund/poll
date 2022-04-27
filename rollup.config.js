@@ -1,7 +1,7 @@
 import typescript from '@rollup/plugin-typescript'
 import { terser } from 'rollup-plugin-terser'
 
-export default {
+/** @type {import('rollup').RollupOptions} */ const options = {
   input: 'src/poll.ts',
   output: {
     dir: 'dist',
@@ -11,3 +11,5 @@ export default {
     terser(),
   ],
 }
+
+export default options

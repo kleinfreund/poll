@@ -15,5 +15,5 @@ export declare function poll(
   /**
    * A callback function indicating whether to stop polling.
    */
-  shouldStopPolling: () => boolean | Promise<boolean>
+  shouldStopPolling?: () => boolean | Promise<boolean>
 ): Promise<void>

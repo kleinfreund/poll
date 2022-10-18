@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.2.1](https://github.com/kleinfreund/poll/compare/v3.2.0...v3.2.1) (2022-10-18)
+
+### Bug fixes
+
+- Fixes the type for `poll` incorrectly marking the `shouldStopPolling` argument as required.
+
 ## [3.2.0](https://github.com/kleinfreund/poll/compare/v3.1.0...v3.2.0) (2021-11-27)
 
 ### Features

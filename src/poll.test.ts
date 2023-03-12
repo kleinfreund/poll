@@ -1,4 +1,4 @@
-import { poll } from './poll'
+import { poll } from './poll.js'
 
 /**
  * Advances the jest timers by the polling delay and any artificial delay introduced via the `shouldStopPolling` callback function if it’s asynchronous.

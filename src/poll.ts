@@ -18,6 +18,6 @@ export async function poll(
     }
 
     const delay = typeof delayOrDelayCallback === 'number' ? delayOrDelayCallback : delayOrDelayCallback()
-    await new Promise(resolve => setTimeout(resolve, Math.max(0, delay)))
+    await new Promise((resolve) => setTimeout(resolve, Math.max(0, delay)))
   } while (!await shouldStopPolling())
 }

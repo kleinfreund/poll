@@ -17,8 +17,8 @@ A simple poll function based on async, await, and an infinite loop.
 ## Contents
 
 - [Installation & usage](#installation-&-usage)
-  - [npm package](#npm-package)
-  - [Plain file](#plain-file)
+  - [As npm package](#as-npm-package)
+  - [As plain JS file](#as-plain-js-file)
 - [Documentation](#documentation)
   - [Syntax](#syntax)
 - [Examples](#examples)
@@ -31,7 +31,7 @@ A simple poll function based on async, await, and an infinite loop.
 
 ## Installation & usage
 
-### npm package
+### As npm package
 
 1. Install the `poll` package.
 
@@ -52,12 +52,12 @@ A simple poll function based on async, await, and an infinite loop.
    poll(fn, 1000)
    ```
 
-### Plain file
+### As plain JS file
 
 1. Download the `poll` module.
 
    ```sh
-   curl -O https://raw.githubusercontent.com/kleinfreund/poll/main/dist/poll.js
+   curl -O 'https://cdn.jsdelivr.net/npm/poll@latest/dist/poll.js'
    ```
 
 2. Import the `poll` function and use it.

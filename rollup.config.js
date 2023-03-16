@@ -9,6 +9,11 @@ export default defineConfig({
 	},
 	plugins: [
 		typescript(),
-		terser(),
+		terser({
+			output: {
+				comments: false,
+				ecma: 2020,
+			},
+		}),
 	],
 })

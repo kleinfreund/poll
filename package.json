@@ -1,6 +1,6 @@
 {
 	"name": "poll",
-	"version": "3.2.1",
+	"version": "3.2.2",
 	"license": "MIT",
 	"description": "A simple poll function based on async, await, and an infinite loop",
 	"author": {

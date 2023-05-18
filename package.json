@@ -21,7 +21,13 @@
 		"await"
 	],
 	"type": "module",
-	"exports": "./dist/poll.js",
+	"exports": {
+		".": {
+			"types": "./types/index.d.ts",
+			"default": "./dist/poll.js"
+		},
+		"./types/index.d.ts": "./types/index.d.ts"
+	},
 	"main": "./dist/poll.js",
 	"module": "./dist/poll.js",
 	"types": "./types/index.d.ts",

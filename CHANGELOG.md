@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.2](https://github.com/kleinfreund/poll/compare/v3.2.1...v3.2.2) (2023-05-18)
+
+### Bug fixes
+
+- Fixes `pkg.exports` missing types for bare module specifiers (i.e. imports from `poll`).
+- Adds missing entry for the type definition file (can now be imported `poll/types/index.d.ts` without TypeScript complaining).
+
 ## [3.2.1](https://github.com/kleinfreund/poll/compare/v3.2.0...v3.2.1) (2022-10-18)
 
 ### Bug fixes

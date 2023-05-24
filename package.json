@@ -39,17 +39,13 @@
 	"scripts": {
 		"build": "rollup --config",
 		"test": "vitest run --coverage",
-		"prebuild": "npm run test",
 		"prepublishOnly": "npm run build"
 	},
 	"devDependencies": {
 		"@rollup/plugin-terser": "^0.4.3",
-		"@rollup/plugin-typescript": "^11.1.1",
 		"@vitest/coverage-c8": "^0.31.1",
 		"jsdom": "^22.0.0",
 		"rollup": "^3.22.0",
-		"tslib": "^2.5.1",
-		"typescript": "^5.0.4",
 		"vitest": "^0.31.1"
 	}
 }

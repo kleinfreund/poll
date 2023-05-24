@@ -5,15 +5,12 @@ import { poll } from './poll.js'
 /**
  * Advances the timers by the polling delay and any artificial delay introduced via the `shouldStopPolling` callback function if it’s asynchronous.
  *
- * @param numberOfIterations
- * @param delay
- * @param shouldStopPollingDelay
+ * @param {number} numberOfIterations
+ * @param {number | (() => number)} delayOrDelayCallback
+ * @param {number} shouldStopPollingDelay
+ * @returns {Promise<void>}
  */
-async function advanceTimersByPollCycles(
-	numberOfIterations: number,
-	delayOrDelayCallback: number | (() => number),
-	shouldStopPollingDelay: number = 0
-): Promise<void> {
+async function advanceTimersByPollCycles(numberOfIterations, delayOrDelayCallback, shouldStopPollingDelay = 0) {
 	for (let i = 0; i < numberOfIterations; i++) {
 		// Clear micro task queue for awaiting `fn`
 		await Promise.resolve()
@@ -95,7 +92,7 @@ describe('poll', () => {
 	test('can be stopped asynchronously', async () => {
 		let pollingShouldBeStopped = false
 		const shouldStopPollingDelay = 100
-		const shouldStopPolling = () => new Promise<boolean>((resolve) => {
+		const shouldStopPolling = () => new Promise((resolve) => {
 			setTimeout(() => {
 				resolve(pollingShouldBeStopped)
 			}, shouldStopPollingDelay)

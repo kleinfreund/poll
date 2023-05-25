@@ -45,7 +45,7 @@
 		"@rollup/plugin-terser": "^0.4.3",
 		"@vitest/coverage-c8": "^0.31.1",
 		"jsdom": "^22.0.0",
-		"rollup": "^3.22.0",
+		"rollup": "^3.23.0",
 		"vitest": "^0.31.1"
 	}
 }

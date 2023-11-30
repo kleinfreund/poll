@@ -2,17 +2,16 @@
 
 A simple poll function based on async, await, and an infinite loop.
 
-**Features**:
-
-- Asynchronous callback function
-- Delay function to customize the polling interval (e.g. to implement exponential backoff)
-- Cancellation function to stop polling altogether (e.g. stop polling after 10 cycles or once a certain condition is fulfilled)
-
 **Links**:
 
 - [**npmjs.com**/package/poll](https://www.npmjs.com/package/poll)
 	- [on BundlePhobia](https://bundlephobia.com/result?p=poll)
 - [**github.com**/kleinfreund/poll](https://github.com/kleinfreund/poll)
+
+**Features**:
+
+- Customizable delay via callback function (e.g. to implement exponential backoff)
+- Stop polling programmatically (e.g. stop polling once a certain condition is fulfilled)
 
 ## Contents
 
@@ -20,7 +19,11 @@ A simple poll function based on async, await, and an infinite loop.
 	- [As npm package](#as-npm-package)
 	- [As plain JS file](#as-plain-js-file)
 - [Documentation](#documentation)
-	- [Syntax](#syntax)
+	- [Parameters](#parameters)
+		- [`fn`](#fn)
+		- [`delayOrDelayCallback`](#delayordelaycallback-optional)
+		- [`shouldStopPolling`](#shouldstoppolling-optional)
+	- [Return value](#return-value)
 - [Examples](#examples)
 	- [Minimal](#minimal)
 	- [Stop polling](#stop-polling)
@@ -33,80 +36,86 @@ A simple poll function based on async, await, and an infinite loop.
 
 ### As npm package
 
-1. Install the `poll` package.
+Install the `poll` package.
 
-	```sh
-	npm install poll
-	```
+```sh
+npm install poll
+```
 
-2. Import the `poll` function and use it.
+Import the `poll` function and use it.
 
-	```js
-	// “poll” is mapped to “poll/dist/poll.js” by Node.js via the package’s “exports” field.
-	import { poll } from 'poll'
+```js
+import { poll } from 'poll'
+
+function fn() {
+	console.log('Hello, beautiful!')
+}
+
+poll(fn, 1000)
+```
+
+### As plain JS file
+
+Download the `poll` module.
+
+```sh
+curl -O 'https://cdn.jsdelivr.net/npm/poll@latest/dist/poll.js'
+```
+
+Import the `poll` function and use it.
+
+```html
+<script type="module">
+	import { poll } from './poll.js'
 
 	function fn() {
 		console.log('Hello, beautiful!')
 	}
 
 	poll(fn, 1000)
-	```
-
-### As plain JS file
-
-1. Download the `poll` module.
-
-	```sh
-	curl -O 'https://cdn.jsdelivr.net/npm/poll@latest/dist/poll.js'
-	```
-
-2. Import the `poll` function and use it.
-
-	```html
-	<script type="module">
-		import { poll } from './poll.js'
-
-		function fn() {
-			console.log('Hello, beautiful!')
-		}
-
-		poll(fn, 1000)
-	</script>
-	```
+</script>
+```
 
 ## Documentation
 
-### Syntax
+Basic usage of `poll` looks like this:
 
+```ts
+poll(function () {
+	console.log('Hello, beautiful!')
+}, 1000)
 ```
-poll(function, delay[, shouldStopPolling])
-```
 
-**Parameters**:
+### Parameters
 
-- **Name**: `fn`<br>
-	**Type**: `() => any`<br>
-	**Required**: Yes<br>
-	**Description**: A function to be called every `delay` milliseconds. No parameters are passed to `fn` upon calling it.
-- **Name**: `delayOrDelayCallback`<br>
-	**Type**: `number | (() => number)`<br>
-	**Required**: Yes<br>
-	**Description**: The delay (in milliseconds) to wait before calling the function `fn` again. If a function is provided instead of a number, it is evaluated during every polling cycle right before the wait period. If the delay is a negative number, zero will be used instead.
-- **Name**: `shouldStopPolling`<br>
-	**Type**: `() => boolean | Promise<boolean>`<br>
-	**Required**: No<br>
-	**Default**: `() => false`<br>
-	**Description**: A function (or a promise resolving to a function) indicating whether to stop the polling process by returning a truthy value (e.g. `true`). The `shouldStopPolling` callback function is called twice during one polling cycle:
+#### `fn`
 
-	- After the result of the call to `fn` was successfully awaited (right before triggering a new delay period).
-	- After the `delay` has passed (right before calling `fn` again).
+**Type**: `() => any`
 
-	This guarantees two things:
+A function to be called every `delay` milliseconds. No parameters are passed to `fn` upon calling it.
 
-	- A currently active execution of `fn` will be completed.
-	- No new calls to `fn` will be triggered.
+#### `delayOrDelayCallback`
 
-**Return value**:
+**Type**: `number | (() => number)`
+
+The delay (in milliseconds) to wait before calling the function `fn` again. If a function is provided instead of a number, it is evaluated during every polling cycle right before the wait period. If the delay is a negative number, zero will be used instead.
+
+#### `shouldStopPolling` (optional)
+
+**Type**: `() => boolean | Promise<boolean>`<br>
+**Default**: `() => false`
+
+A function returning a boolean (or a function returning a promise resolving to a boolean) indicating whether to stop the polling process. The `shouldStopPolling` callback function is called twice during one polling cycle:
+
+- After the result of the call to `fn` was successfully awaited (right before triggering a new delay period).
+- After the `delay` has passed (right before calling `fn` again).
+
+This guarantees two things:
+
+- A currently active execution of `fn` will be completed.
+- No new calls to `fn` will be triggered.
+
+### Return value
 
 None.
 
@@ -137,7 +146,6 @@ You can pass a callback function to `poll` for its third parameter. It’s evalu
 
 ```js
 let stopPolling = false
-const shouldStopPolling = () => stopPolling
 
 function fn() {
 	console.log('Hello, beautiful!')
@@ -147,7 +155,7 @@ setTimeout(() => {
 	stopPolling = true
 }, 1000)
 
-poll(fn, 50, shouldStopPolling)
+poll(fn, 50, () => stopPolling)
 ```
 
 In this example, the `shouldStopPolling` callback function evaluates to `true` after the `setTimeout` function causes `stopPolling` to be set to `true` after 1000 milliseconds. The next time `shouldStopPolling` is evaluated, it will cause `poll` to exit normally.
